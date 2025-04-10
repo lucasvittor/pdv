@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema PDV - Lucas Vitor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color:#0d1c33;
+      color: #fff;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      padding: 30px 20px;
+      position: fixed;
+      left: 0;
+      top: 0;
+    }
+
+    .sidebar h2 {
+      color: #ffffff;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .sidebar nav a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .sidebar nav a:hover {
+      background-color: #ffffff;
+      color: #0d1c33;
+    }
+
+    .main {
+      margin-left: 240px;
+      padding: 30px;
+      flex: 1;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    form {
+      padding: 15px;
+      border-radius: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      width: 100%;
+      max-width: 470px;
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .form-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 100;
+      margin-bottom: 2px;
+      font-size: 13px;
+    }
+
+    input, textarea {
+      padding: 4px 8px;
+      height: 28px;
+      border: 2px solid #0d1c33;
+      border-radius: 4px;
+      font-size: 15px;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #0d1c33;
+      outline: none;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .textarea-group textarea {
+      height: auto;
+      resize: vertical;
+      min-height: 0px;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      background-color: #0d1c33;
+      color: white;
+      border: none;
+      border-radius: 9px;
+      border: 2px solid #ffffff;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 6px;
+    }
+
+    button:hover {
+      background-color: #ffffff;
+      color: #0d1c33;
+
+    }
+
+    .tabela-container {
+      max-height: 100%;
+      overflow-y: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+      background-color: #0d1c33;
+      flex: 1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #0d1c33;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    thead {
+      background-color: #ffffff;
+      color: #0d1c33;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #0d1c33;
+      font-size: 13px;
+    }
+
+    tbody tr:hover {
+      background-color: #ffffff;
+      color: #0f2f5f;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .main {
+        margin-left: 0;
+      }
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Sistema PDV</h2>  
+    <nav>
+      <a href="#">Cadastro de Produtos</a>
+      <a href="#">Vendas</a>
+      <a href="#">Relatórios</a>
+      <a href="#">Configurações</a>
+    </nav>
+  </div>
+
+  <div class="main">
+    <h1>Cadastro de Produtos</h1>
+
+    <form id="pdvForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="codigo">Código</label>
+          <input type="text" id="codigo" name="codigo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="marca">Marca</label>
+          <input type="text" id="marca" name="marca" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tipo">Tipo</label>
+          <input type="text" id="tipo" name="tipo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+          <input type="text" id="categoria" name="categoria" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="preco_unitario">Preço Unitário (R$)</label>
+          <input type="number" id="preco_unitario" name="preco_unitario" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+          <label for="custo">Custo (R$)</label>
+          <input type="number" id="custo" name="custo" step="0.01" required>
+        </div>
+      </div>
+
+      <div class="form-group textarea-group">
+        <label for="obs">Observações</label>
+        <textarea id="obs" name="obs" rows="3"></textarea>
+      </div>
+
+      <button type="submit">Cadastrar Produto</button>
+    </form>
+
+    <div class="tabela-container">
+      <table id="tabelaProdutos">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Marca</th>
+            <th>Tipo</th>
+            <th>Categoria</th>
+            <th>Preço Unitário</th>
+            <th>Custo</th>
+            <th>Observações</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('pdvForm');
+    const tabela = document.querySelector('#tabelaProdutos tbody');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const dados = {
+        codigo: form.codigo.value,
+        marca: form.marca.value,
+        tipo: form.tipo.value,
+        categoria: form.categoria.value,
+        preco: parseFloat(form.preco_unitario.value).toFixed(2),
+        custo: parseFloat(form.custo.value).toFixed(2),
+        obs: form.obs.value
+      };
+
+      const row = tabela.insertRow();
+      row.innerHTML = `
+        <td>${dados.codigo}</td>
+        <td>${dados.marca}</td>
+        <td>${dados.tipo}</td>
+        <td>${dados.categoria}</td>
+        <td>R$ ${dados.preco}</td>
+        <td>R$ ${dados.custo}</td>
+        <td>${dados.obs}</td>
+      `;
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
