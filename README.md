@@ -1,6 +1,7 @@
 # 🧾 Sistema PDV - Lucas Vitor
 
-Este projeto consiste em um sistema web simples de PDV (Ponto de Venda) desenvolvido com HTML, CSS e JavaScript, com um script Python para automação de cadastro de produtos através da interface gráfica do navegador.
+Este projeto consiste em um sistema web simples de PDV (Ponto de Venda) desenvolvido com HTML, CSS e JavaScript, com um script Python para automação de cadastro de produtos através da interface gráfica do navegador.<br>
+Assista aqui: https://www.linkedin.com/feed/update/urn:li:activity:7316261634539249664/?originTrackingId=YDw%2BFGwOSvqYoCP0%2Byfn%2Bg%3D%3D
 
 ## 🌐 Interface Web
 
